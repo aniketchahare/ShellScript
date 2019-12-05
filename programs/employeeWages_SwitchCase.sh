@@ -8,6 +8,12 @@ wages=100
 fullTimeHour=8
 halfTimeHour=4
 
+totalSalary=0
+totalWorkingDays=20
+employWorkingDays=0
+totalWorkingHours=50
+employWorkingHours=0
+
 if [ $empStatus -eq 0 ]
 then
 		case $empType in
@@ -18,7 +24,13 @@ then
 			*)
 				salary=0 ;;
 		esac
-		echo "Total salary--> $salary"
+
+		while [ $employWorkingHours != $totalWorkingHours ]
+		do
+			totalSalary=$(( $totalSalary+$salary ))
+			((employWorkingHours++))
+		done
+		echo "Total salary--> $totalSalary"
 else
 		echo "NOT PRESENT"
 fi
